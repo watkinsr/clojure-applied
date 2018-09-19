@@ -31,9 +31,11 @@
   ([ m1 m2 & monies]
    (reduce +$ m1 (conj monies m2))))
 
+(defn *$ [m n] (->Money (* n (:amount m)) (:currency m)))
 
 (def currencies {:gbp (->Currency 100 "GBP" "Pound sterling")
-                 :usd (->Currency 100 "USD" "US dollar")})
+                 :usd (->Currency 100 "USD" "US dollar")
+                 :eur (->Currency 100 "EUR" "Euro")})
 
 (defn make-money
   ([] (make-money 0))
@@ -41,3 +43,5 @@
   ([amount currency] (->Money amount currency)))
 
 (make-money)
+(make-money 1)
+(make-money 5 (:eur currencies))
